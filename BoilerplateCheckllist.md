@@ -1,15 +1,15 @@
 Boilerplate Setup Checklist:
-    [] create server file
-        [] create server.js
-        [] create public folder
-            [] create index.html
-            [] create styles.css
-            [] create client.js
-            [] create vendors folder
-                [] source jQuery.js inside this folder.
-        [] create modules folder
-            [] create pool.js --> to link database with server.
-        [] create routes folder
+    [x] create server file
+        [x] create server.js
+        [x] create public folder
+            [x] create index.html
+            [x] create styles.css
+            [x] create client.js
+            [x] create vendors folder
+                [x] source jQuery.js inside this folder.
+        [x] create modules folder
+            [x] create pool.js --> to link database with server.
+        [x] create routes folder
 
 
 Installs Setup Checklist:
