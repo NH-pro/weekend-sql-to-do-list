@@ -21,7 +21,7 @@ Installs Setup Checklist:
     [x] npm install nodemon
         [x] under "scripts", add "start": "nodemon server/server.js"
     [x] npm install body-parser
-    [] npm install pg
+    [x] npm install pg
 
 
 server.js Boilerplate:
@@ -30,10 +30,8 @@ server.js Boilerplate:
     const bodyParser = require('body-parser');
     const PORT = process.env.PORT || 5000;
 
-    const express = require('express');
-    const app = express();
-    const bodyParser = require('body-parser');
-    const PORT = process.env.PORT || 5000;
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(express.static('server/public'));
 
     app.listen(PORT, () => {
         console.log('listening on port', PORT);
