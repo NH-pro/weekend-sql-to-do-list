@@ -12,3 +12,10 @@ To-Do App Requirements:
     [] Whether or not a Task is complete should also be stored in the database.
 
     [] Deleting a Task should remove it both from the front end as well as the Database.
+
+
+Create a Database:
+    [x] Be sure to create a new database through Postico. Use the name weekend-to-do-app. You will need to use this name in your database connection configuration on your server.
+
+ Database Structure:
+    [] Please include a database.sql text file in your repo that includes all of your CREATE TABLE queries. This is so we can re-create your database while testing your app.  
