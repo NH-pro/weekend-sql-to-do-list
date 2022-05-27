@@ -13,12 +13,14 @@ Boilerplate Setup Checklist:
 
 
 Installs Setup Checklist:
-    [] npm install
-    [] add a .gitignore file and put node-modules in it
-    [] npm install express
-    [] npm install nodemon
-        [] under "scripts", add "start": "nodemon server/server.js"
-    [] npm install body-parser
+    [x] npm init
+    [x] npm install
+    [x] npm install express
+    [x] add a .gitignore file
+        [x] put node-modules in it
+    [x] npm install nodemon
+        [x] under "scripts", add "start": "nodemon server/server.js"
+    [x] npm install body-parser
     [] npm install pg
 
 
