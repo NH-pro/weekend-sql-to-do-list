@@ -4,16 +4,19 @@ const pool = require('../modules/pool');
 
 tasksRouter.post('/', (req, res) => {
     console.log(req.body.name);
-    let sqlQuery = 
-        `INSERT INTO "to-dos" ("task")
-        VALUES ($1);`
+    // test to see what i'm working with is correct
+
+    let sqlQuery = `
+        INSERT INTO "to-dos" ("task")
+        VALUES ($1);
+        `;
 
     let sqlParams = [req.body.name];
 
     pool.query(sqlQuery, sqlParams)
         .then(() => {
             console.log(`taskRouter.post Success!`);
-            res.sendStatus(201);
+            res.sendStatus(200);
         })
         .catch((err) => {
             console.log(`taskRouter.post Failed!`, err);
@@ -21,6 +24,29 @@ tasksRouter.post('/', (req, res) => {
         });
 });
 
+tasksRouter.delete('/', (req,res) => {
+    console.log(req.body.deleteId);
+    // test to see what i'm working with is correct
+
+    let sqlQuery = `
+        DELETE FROM "to-dos"
+        WHERE "id" = $1;
+    `;
+
+    let sqlParams = [
+        req.body.deleteId
+    ];
+
+    pool.query(sqlQuery,sqlParams)
+        .then(() => {
+            console.log(`taskeRouter.delete Success!`);
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log(`taskeRouter.delete Failed!`, err);
+            res.sendStatus(500);
+        });
+});
 
 tasksRouter.get('/', (req, res) => {
     let sqlQuery = 'SELECT * FROM "to-dos";';
