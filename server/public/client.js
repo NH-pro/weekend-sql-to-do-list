@@ -16,10 +16,12 @@ function addTask() {
     console.log(`--- In addTask function ---`);
     // connection test
 
-    let taskInput = $('#task_input').val();
+    let taskInput = {
+        name:$('#task_input').val()
+    };
 
     $.ajax({
-        method: 'PUT',
+        method: 'POST',
         url: '/tasks',
         data: taskInput
     })
