@@ -12,9 +12,37 @@ function readyHandlers() {
     getTasks();
 }
 
+function addTask() {
+    console.log(`--- In addTask function ---`);
+    // connection test
+
+    let taskInput = {
+        name:$('#task_input').val()
+    };
+
+    $.ajax({
+        method: 'POST',
+        url: '/tasks',
+        data: taskInput
+    })
+    .then(() => {
+        console.log(`addTask Success!`);
+        getTasks();
+        //display new DB data on DOM
+        $('#task_input').val('');
+        // empty 'task_input
+    })
+    .catch((err) => {
+        console.log(`addTask Failed!`, err);
+    });
+}
+
 function getTasks() {
     console.log(`--- In getTasks function ---`);
     //connection test
+
+    $('#task_display_container').empty();
+    // Clear old DB data on DOM
 
     $.ajax({
         method: 'GET',
@@ -45,14 +73,4 @@ function getTasks() {
 function deleteTask() {
     console.log(`--- In deleteTask funciton ---`);
     // connnection test
-}
-
-function addTask() {
-    console.log(`--- In addTask function ---`);
-    // connection test
-
-    let taskInput = $('#task_input').val();
-
-    $('#task_input').val('');
-    // empty 'task_input
 }
