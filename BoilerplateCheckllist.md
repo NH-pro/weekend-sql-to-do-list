@@ -40,15 +40,13 @@ server.js Boilerplate:
 
 pool.js Boilerplate:
     const pg = require('pg');
-
     const config = {
         database: '*database name*',
         host: 'localhost',          
         port: 5432,
     }
-
     const pool = new pg.Pool(config);
-
+    
     pool.on("connect", () => {
         console.log("connected to postgres");
     });
