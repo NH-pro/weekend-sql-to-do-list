@@ -12,5 +12,14 @@ function addTask() {
     console.log(`--- In addTask function ---`);
     // connection test
 
-    
+    let taskInput = $('#task_input').val();
+
+    $('#task_display_container').append(`
+        <tr>
+            <td>${taskInput}</td>
+        </tr>
+    `);
+
+    $('#task_input').val('');
+    // empty 'task_input
 }
