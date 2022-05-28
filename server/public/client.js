@@ -114,8 +114,14 @@ function getTasks() {
     .then((response) => {
         console.log(`getTasks function Success!`, response);
         for(let item of response) {
+            if(item.completed === 'Y') {
+                newClass = 'class = "green"'
+            }
+            else {
+                newClass = '';
+            }
             $('#task_display_container').append(`
-            <tr data-task-id="${item.id}">
+            <tr ${newClass} data-task-id="${item.id}">
                 <td>${item.task}</td>
                 <td class="compStatus">${item.completed}</td>
                 <td>
