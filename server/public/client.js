@@ -7,11 +7,49 @@ function readyHandlers() {
     $('#add_task_btn').on('click', addTask);
     // event listener when the 'add_task_btn' is clicked, run 'addTask' function
 
-    $('#task_display_container').on('click', '.delete_btn', deleteTask)
+    $('#task_display_container').on('click', '.delete_btn', deleteTask);
+
+    $('#task_display_container').on('click','.complete_btn', completeTask);
 
     getTasks();
     // get tasks from DB and display them when page loads.
 }
+
+function completeTask() {
+    console.log(`--- In completeTask function ---`);
+    // connection test
+
+    let completeStatus = $(this).parents('tr').children('.compStatus').text();
+    let taskId = $(this).parents('tr').data('task-id');
+    let newStatus;
+
+    if(completeStatus === 'N') {
+        newStatus = {
+            newStatus: 'Y',
+            taskId: taskId
+        };
+    }
+    else {
+        newStatus = {
+            newStatus: 'N',
+            taskId: taskId
+        };
+    };
+
+    $.ajax({
+        method: 'PUT',
+        url: '/tasks',
+        data: newStatus
+    })
+    .then(() => {
+        console.log(`completeTask function Success!`);
+        getTasks();
+        //display new DB data on DOM
+    })
+    .catch((err) => {
+        console.log(`completeTask function Failed!`, err);
+    });
+};
 
 function addTask() {
     console.log(`--- In addTask function ---`);
@@ -79,7 +117,7 @@ function getTasks() {
             $('#task_display_container').append(`
             <tr data-task-id="${item.id}">
                 <td>${item.task}</td>
-                <td>${item.completed}</td>
+                <td class="compStatus">${item.completed}</td>
                 <td>
                     <button class= "delete_btn">Delete</button>
                 </td>

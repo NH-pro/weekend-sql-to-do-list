@@ -2,6 +2,32 @@ const express = require('express');
 const tasksRouter = express.Router();
 const pool = require('../modules/pool');
 
+tasksRouter.put('/', (req,res) => {
+    console.log(req.body.newStatus ,req.body.taskId);
+    // test to see what i'm working with is correct
+
+    let sqlQuery = `
+        UPDATE "to-dos"
+        SET "completed" = $1
+        WHERE "id" = $2
+    `;
+
+    let sqlParams = [
+        req.body.newStatus,
+        req.body.taskId
+    ];
+
+    pool.query(sqlQuery,sqlParams)
+        .then(() => {
+            console.log(`taskRouter.put Success!`);
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log(`taskRouter.put Failed!`, err);
+            res.sendStatus(500);
+        });
+});
+
 tasksRouter.post('/', (req, res) => {
     console.log(req.body.name);
     // test to see what i'm working with is correct
