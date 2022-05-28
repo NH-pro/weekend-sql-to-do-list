@@ -10,6 +10,7 @@ function readyHandlers() {
     $('#task_display_container').on('click', '.delete_btn', deleteTask)
 
     getTasks();
+    // get tasks from DB and display them when page loads.
 }
 
 function addTask() {
@@ -37,6 +38,30 @@ function addTask() {
     });
 }
 
+
+function deleteTask() {
+    console.log(`--- In deleteTask funciton ---`);
+    // connnection test
+
+    let deleteId = {deleteId: $(this).parents('tr').data('task-id')};
+    // this targets the id number that was declared in 'getTasks' function.
+
+    $.ajax({
+        method: 'DELETE',
+        url: '/tasks',
+        data: deleteId
+    })
+    .then(() => {
+        console.log(`deleteTask function success!`);
+        getTasks();
+        // display new DB data on DOM
+    })
+    .catch((err) => {
+        console.log(`deleteTask function Failed!`, err);
+    });
+
+}
+
 function getTasks() {
     console.log(`--- In getTasks function ---`);
     //connection test
@@ -52,7 +77,7 @@ function getTasks() {
         console.log(`getTasks function Success!`, response);
         for(let item of response) {
             $('#task_display_container').append(`
-            <tr>
+            <tr data-task-id="${item.id}">
                 <td>${item.task}</td>
                 <td>${item.completed}</td>
                 <td>
@@ -67,10 +92,5 @@ function getTasks() {
     })
     .catch((err) => {
         console.log(`getTasks function Failed!`, err);
-    })
-}
-
-function deleteTask() {
-    console.log(`--- In deleteTask funciton ---`);
-    // connnection test
+    });
 }
