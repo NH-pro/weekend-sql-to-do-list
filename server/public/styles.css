@@ -14,7 +14,12 @@ table {
     margin-left: auto;
     margin-right: auto;
     border-collapse: collapse;
-    margin-top: 1em;
+}
+
+.table_container {
+    background-color: darkseagreen;
+    margin: 5px;
+    padding: 20px;
 }
 
 th, td {
@@ -24,4 +29,8 @@ th, td {
 
 th {
     background-color: white;
+}
+
+tbody {
+    padding: 30px;
 }
