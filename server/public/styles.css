@@ -1,3 +1,9 @@
+body {
+    background-color: honeydew;
+    width: 750px;
+    margin: 0 auto;
+}
+
 .green {
     background-color: greenyellow;
 }
@@ -6,9 +12,6 @@
     background-color: white;
 }
 
-body {
-    background-color: honeydew;
-}
 
 h1 {
     font-style: italic;
@@ -16,6 +19,7 @@ h1 {
     text-align: center;
     background-color: khaki;
     margin: 9px 87px;
+    margin-top: 60px;
     padding: 6px;
     border-radius: 5px;
 }
