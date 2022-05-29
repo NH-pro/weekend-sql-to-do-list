@@ -28,6 +28,7 @@ function completeTask() {
             newStatus: 'Y',
             taskId: taskId
         };
+        alert('🎉 Nice Job! Keep up the great work! 👏');
     }
     else {
         newStatus = {
@@ -59,22 +60,27 @@ function addTask() {
         name:$('#task_input').val()
     };
 
-    $.ajax({
-        method: 'POST',
-        url: '/tasks',
-        data: taskInput
-    })
-    .then(() => {
-        console.log(`addTask Success!`);
-        getTasks();
-        //display new DB data on DOM
-        $('#task_input').val('');
-        // empty 'task_input
-    })
-    .catch((err) => {
-        console.log(`addTask Failed!`, err);
-    });
-}
+    if(taskInput.name == '') {
+        alert(`❌ Task cannot be nothing. Try again. ❌`)
+    }
+    else {
+        $.ajax({
+            method: 'POST',
+            url: '/tasks',
+            data: taskInput
+        })
+        .then(() => {
+            console.log(`addTask Success!`);
+            getTasks();
+            //display new DB data on DOM
+            $('#task_input').val('');
+            // empty 'task_input
+        })
+        .catch((err) => {
+            console.log(`addTask Failed!`, err);
+        });
+    };
+};
 
 
 function deleteTask() {
@@ -115,20 +121,20 @@ function getTasks() {
         console.log(`getTasks function Success!`, response);
         for(let item of response) {
             if(item.completed === 'Y') {
-                newClass = 'class = "green"'
+                newClass = 'class = "green"';
             }
             else {
-                newClass = '';
+                newClass = 'class = "white"';
             }
             $('#task_display_container').append(`
             <tr ${newClass} data-task-id="${item.id}">
                 <td>${item.task}</td>
                 <td class="compStatus">${item.completed}</td>
                 <td>
-                    <button class= "delete_btn">Delete</button>
+                    <button class= "complete_btn">Completed</button>
                 </td>
                 <td>
-                    <button class= "complete_btn">Complete</button>
+                    <button class= "delete_btn">Delete</button>
                 </td>
             </tr>
             `);
