@@ -11,7 +11,13 @@ body {
 }
 
 h1 {
+    font-style: italic;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
+    background-color: khaki;
+    margin: 9px 87px;
+    padding: 6px;
+    border-radius: 5px;
 }
 
 table {
@@ -22,7 +28,7 @@ table {
 
 .table_container {
     background-color: darkseagreen;
-    margin: 20px 87px;
+    margin: 14px 87px;
     padding: 28px;
     border-radius: 20px;
 }
@@ -31,7 +37,7 @@ tr:hover {background-color: lightgray;}
 
 th, td {
     border: 1px solid black;
-    padding: 3px;
+    padding: 4px;
 }
 
 th {
@@ -44,4 +50,16 @@ tbody {
 
 .input_container {
     text-align: center;
+    background-color: yellowgreen;
+    margin: 15px 195px;
+    padding: 11px;
+    border-radius: 8px;
+}
+
+.delete_btn {
+    background-color: lightpink;
+}
+
+.complete_btn {
+    background-color: honeydew;
 }
