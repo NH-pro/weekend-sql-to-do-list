@@ -60,22 +60,27 @@ function addTask() {
         name:$('#task_input').val()
     };
 
-    $.ajax({
-        method: 'POST',
-        url: '/tasks',
-        data: taskInput
-    })
-    .then(() => {
-        console.log(`addTask Success!`);
-        getTasks();
-        //display new DB data on DOM
-        $('#task_input').val('');
-        // empty 'task_input
-    })
-    .catch((err) => {
-        console.log(`addTask Failed!`, err);
-    });
-}
+    if(taskInput.name == '') {
+        alert(`❌ Task cannot be nothing. Try again. ❌`)
+    }
+    else {
+        $.ajax({
+            method: 'POST',
+            url: '/tasks',
+            data: taskInput
+        })
+        .then(() => {
+            console.log(`addTask Success!`);
+            getTasks();
+            //display new DB data on DOM
+            $('#task_input').val('');
+            // empty 'task_input
+        })
+        .catch((err) => {
+            console.log(`addTask Failed!`, err);
+        });
+    };
+};
 
 
 function deleteTask() {
